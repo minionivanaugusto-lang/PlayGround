@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#253a22" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="description"
+      content="Colonia Aurora: un juego de estrategia tranquilo donde guías a una hormiga exploradora por un valle natural."
+    />
+    <title>Colonia Aurora · Valle de los Helechos</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <svg class="svg-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="i-leaf" viewBox="0 0 24 24">
+        <path d="M20.5 3.5C11.4 3 5 7.2 5 13.2c0 2 .8 3.8 2 5.1L4 21.3l1.4 1.4 3-3a7.5 7.5 0 0 0 5.1 2c5.4 0 8.3-6 7-18.2Z" />
+        <path d="M7.3 18.2c2.2-3.7 5.6-6.4 9.4-8.3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-seed" viewBox="0 0 24 24">
+        <path d="M12 2.5c4 3.1 6.2 7 6.2 11.1a6.2 6.2 0 1 1-12.4 0C5.8 9.5 8 5.6 12 2.5Z" />
+        <path d="M12 6.2v13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".55" />
+      </symbol>
+      <symbol id="i-stone" viewBox="0 0 24 24">
+        <path d="m4.1 13.3 2-6.2 5.4-3 6.7 2.2 2.1 6.1-3.1 6.1-6.6 1.8-5.3-3Z" />
+        <path d="M6.1 7.1 12 9.2l6.2-2.9M12 9.2v9.2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".4" />
+      </symbol>
+      <symbol id="i-twig" viewBox="0 0 24 24">
+        <path d="M4 20 19 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+        <path d="m11.5 11.5 1-5.2M13.2 9.8l5-1M9.6 14.2l-4.6 1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-ant" viewBox="0 0 32 32">
+        <ellipse cx="10" cy="19" rx="5.5" ry="4.2" transform="rotate(-18 10 19)" />
+        <ellipse cx="16.5" cy="16.5" rx="3" ry="2.4" transform="rotate(-18 16.5 16.5)" />
+        <circle cx="21.5" cy="14" r="3.2" />
+        <path d="M17 17 12 24M18 16l-2 9M20 15l3 8M17 15l-7 4M19 15l6 1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M23 12.5 27 8m-3.5 4.5L28 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24">
+        <path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z" />
+        <path d="M15.2 8.7a4.7 4.7 0 0 1 0 6.6M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-muted" viewBox="0 0 24 24">
+        <path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z" />
+        <path d="m15.5 9.5 5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-help" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+        <path d="M9.5 9.3a2.7 2.7 0 1 1 4.2 2.3c-.9.6-1.6 1.1-1.6 2.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        <circle cx="12" cy="17.2" r="1.1" />
+      </symbol>
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="6.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+        <circle cx="12" cy="12" r="2" />
+        <path d="M12 2v4m0 12v4M2 12h4m12 0h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-nest" viewBox="0 0 24 24">
+        <path d="M3 17.2c0-4.6 4-8.2 9-8.2s9 3.6 9 8.2c0 1.6-1.3 2.8-3 2.8H6c-1.7 0-3-1.2-3-2.8Z" />
+        <ellipse cx="12" cy="16.6" rx="4.4" ry="2.8" fill="#2d2114" opacity=".55" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M12 19V5m0 0L5.5 11.5M12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m4.5 12.5 5 5 10-11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24">
+        <path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9Z" />
+      </symbol>
+    </svg>
+
+    <canvas id="game" aria-label="Valle de Colonia Aurora"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <div id="hud">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-badge"><svg><use href="#i-ant" /></svg></div>
+          <div class="brand-text">
+            <h1>Colonia Aurora</h1>
+            <p>Valle de los Helechos</p>
+          </div>
+        </div>
+
+        <div class="stats" aria-label="Reservas de la colonia">
+          <div class="stat" data-cat="food" title="Semillas y bayas">
+            <span class="stat-ico food"><svg><use href="#i-seed" /></svg></span>
+            <span class="stat-value" id="stat-food">0</span>
+            <span class="stat-label">semillas</span>
+          </div>
+          <div class="stat" data-cat="leaves" title="Hojas frescas">
+            <span class="stat-ico leaves"><svg><use href="#i-leaf" /></svg></span>
+            <span class="stat-value" id="stat-leaves">0</span>
+            <span class="stat-label">hojas</span>
+          </div>
+          <div class="stat" data-cat="stone" title="Piedritas">
+            <span class="stat-ico stone"><svg><use href="#i-stone" /></svg></span>
+            <span class="stat-value" id="stat-stone">0</span>
+            <span class="stat-label">piedras</span>
+          </div>
+          <div class="stat" data-cat="wood" title="Ramitas">
+            <span class="stat-ico wood"><svg><use href="#i-twig" /></svg></span>
+            <span class="stat-value" id="stat-wood">0</span>
+            <span class="stat-label">ramitas</span>
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <button class="icon-btn" id="btn-sound" aria-label="Silenciar sonido" title="Sonido">
+            <svg><use href="#i-sound" id="sound-use" /></svg>
+          </button>
+          <button class="icon-btn" id="btn-help" aria-label="Ayuda y controles" title="Ayuda">
+            <svg><use href="#i-help" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="quest-card" id="quest-card" aria-label="Objetivos de la colonia">
+        <div class="quest-head">
+          <span class="eyebrow">La colonia necesita</span>
+          <span class="quest-count" id="quest-count">0/3</span>
+        </div>
+        <ul id="quest-list"></ul>
+        <button class="quest-more" id="quest-more">Ver objetivos</button>
+      </section>
+
+      <div class="map-cluster">
+        <div class="minimap-shell">
+          <canvas id="minimap" width="260" height="195" aria-label="Mapa del valle"></canvas>
+          <span class="minimap-tag">VALLE</span>
+        </div>
+        <div class="map-actions">
+          <button class="mini-btn" id="btn-zoom-in" aria-label="Acercar cámara">+</button>
+          <button class="mini-btn" id="btn-zoom-out" aria-label="Alejar cámara">−</button>
+          <button class="mini-btn recenter" id="btn-recenter" aria-label="Centrar en la hormiga" hidden>
+            <svg><use href="#i-target" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="joystick" id="joystick" aria-label="Joystick para mover la hormiga">
+        <div class="joystick-base">
+          <span class="joy-tick n"></span><span class="joy-tick e"></span><span class="joy-tick s"></span><span class="joy-tick w"></span>
+          <div class="joystick-knob" id="joystick-knob"><svg><use href="#i-ant" /></svg></div>
+        </div>
+        <span class="joystick-caption">Mover</span>
+      </div>
+
+      <div class="cargo" id="cargo" aria-live="polite">
+        <div class="cargo-head">
+          <span>Cargando</span>
+          <b id="cargo-count">0/4</b>
+        </div>
+        <div class="cargo-slots" id="cargo-slots"></div>
+        <span class="cargo-hint" id="cargo-hint">Busca hojas, semillas y piedritas</span>
+      </div>
+
+      <button class="action-btn" id="action-btn" aria-label="Recolectar">
+        <span class="action-ring" aria-hidden="true"></span>
+        <span class="action-ico" id="action-ico"><svg><use href="#i-leaf" /></svg></span>
+        <span class="action-text" id="action-text">Recolectar</span>
+        <span class="action-key" id="action-key">E</span>
+      </button>
+
+      <div class="toasts" id="toasts" aria-live="polite"></div>
+
+      <div class="intro" id="intro">
+        <div class="intro-mark"><svg><use href="#i-ant" /></svg></div>
+        <div class="intro-copy">
+          <b>Tu colonia te espera</b>
+          <span>Mueve con el joystick o tocando el suelo. Recolecta y vuelve al nido.</span>
+        </div>
+        <button class="intro-close" id="intro-close" aria-label="Cerrar consejo">
+          <svg><use href="#i-close" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="modal" id="modal" hidden>
+      <div class="modal-scrim" data-close-modal></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" aria-label="Cerrar ayuda">
+          <svg><use href="#i-close" /></svg>
+        </button>
+        <div class="modal-head">
+          <span class="eyebrow">Guía de campo</span>
+          <h2 id="modal-title">Cómo cuidar tu colonia</h2>
+          <p>Un valle tranquilo para explorar sin prisa. No hay enemigos: solo caminos, aromas y trabajo en equipo.</p>
+        </div>
+        <div class="modal-body">
+          <section class="modal-section">
+            <h3><span class="modal-num">1</span> Moverte</h3>
+            <ul class="control-list">
+              <li><span class="key-chip">Joystick</span><span>Arrastra el joystick o toca el suelo para caminar.</span></li>
+              <li><span class="key-chip">Toca</span><span>Toca un recurso para que la hormiga lo recolecte sola.</span></li>
+              <li><span class="key-chip">WASD</span><span>Teclado en computadora. Flechas también sirven.</span></li>
+            </ul>
+          </section>
+          <section class="modal-section">
+            <h3><span class="modal-num">2</span> Recolectar y depositar</h3>
+            <ul class="control-list">
+              <li><span class="key-chip">Botón</span><span>Recolecta lo que tengas cerca o vuelve al nido con tu carga.</span></li>
+              <li><span class="key-chip">E</span><span>Atajo de teclado para el mismo botón de acción.</span></li>
+              <li><span class="key-chip">Nido</span><span>Al acercarte con carga, se deposita automáticamente.</span></li>
+            </ul>
+          </section>
+          <section class="modal-section">
+            <h3><span class="modal-num">3</span> La cámara</h3>
+            <ul class="control-list">
+              <li><span class="key-chip">Arrastra</span><span>Desliza el paisaje para mirar alrededor. Usa el botón de centrar.</span></li>
+              <li><span class="key-chip">Pinza</span><span>Pellizca con dos dedos o usa la rueda para acercar.</span></li>
+            </ul>
+          </section>
+          <section class="modal-section modal-objectives">
+            <h3><span class="modal-num">4</span> Objetivos de la colonia</h3>
+            <div id="modal-quests" class="modal-quests"></div>
+            <p class="modal-footnote">Cada entrega hace crecer el nido. Cuando termines los tres objetivos, el valle seguirá abierto para explorar.</p>
+          </section>
+          <div class="modal-reset">
+            <button id="btn-reset" class="reset-btn">Reiniciar progreso de la colonia</button>
+            <span id="reset-note">Se borrarán las reservas y los objetivos.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rotate-note" id="rotate-note">
+      <span>Gira el dispositivo para disfrutar mejor el valle</span>
+    </div>
+
+    <script type="module" src="./src/game.js"></script>
+  </body>
+</html>
